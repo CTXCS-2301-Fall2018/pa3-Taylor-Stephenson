@@ -1,4 +1,8 @@
-@Vending machine code
+	@Vending machine code
+	@	Taylor Stephenson
+	@	Program Assignment 3
+	@	10-15-2018
+	@	Simulates a small vending machine of different choices
 
     .global main
     .extern printf
@@ -33,25 +37,25 @@ main:
 
 	@Your modifications will begin at this point
 
-	CMP	R1, #1
-	MOVEQ	R3, #75
-	CMP	R1, #2
-	MOVEQ	R3, #125
-	CMP	R1, #3
-	MOVEQ	R3, #90
+	CMP	R1, #1		@ check if input was peanuts
+	MOVEQ	R3, #75		@ if input was peanuts, put price of peanuts in R3
+	CMP	R1, #2		@ check if input was choc
+	MOVEQ	R3, #125	@ if input was choc put price of choc in R3
+	CMP	R1, #3		@ check if input was pretzels
+	MOVEQ	R3, #90		@ if input was pretzels put price of pretzels in R3
 
-	LDRGT	R0, =msg7
-	BLGT	printf
-	MOVGT	R7, #1
+	LDRGT	R0, =msg7	@ if a value greater than 3 was entered
+	BLGT	printf		@ run error message
+	MOVGT	R7, #1		@ and temrinate program
 	SWIGT	#0
 
-	LDRLE	R4, =quantity
-	LDRLE	R4, [R4]
-	MULLE	R1, R3, R4
-	LDRLE	R0, =msg6
-	BLLE	printf
+	LDRLE	R4, =quantity	@ if input was less than or equal to 3, set the quantity in R4
+	LDRLE	R4, [R4]	
+	MULLE	R1, R3, R4	@ Multiply price by quantity
+	LDRLE	R0, =msg6	
+	BLLE	printf		
 	MOVLE	R7, #0
-	SWILE	#0
+	SWILE	#0		@ exit program
 	
 	
 
